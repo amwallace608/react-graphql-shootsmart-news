@@ -245,10 +245,10 @@ class LinkList extends Component {
 								/>
 							))}
 							{isNewPage && (
-								<div className="flex justify-center ml4 mv3 white">
+								<div className="flex justify-center ml4 mv3 f6 white">
 									{!isFirstPage && (//don't render if first page
 										<div
-											className="pointer mr2 ph2"
+											className="pointer ph2"
 											onClick={this._previousPage}
 										>
 											❮❮
