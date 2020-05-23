@@ -11,11 +11,19 @@ class Header extends Component{
     const authToken = localStorage.getItem(AUTH_TOKEN)
     //return header w/ (react router) Link components for the link feed, and create link
     return (
-			<div className="flex pa1 justify-between nowrap olive-green">
-				<div className="flex flex-fixed grey">
+			<div className="flex outline pa1 justify-between nowrap background-olive-green">
+				<div className="flex flex-fixed sand">
 					<div className="fw7 mr1">ShootSmart News</div>
 					<Link to="/" className="ml1 no-underline white">
 						New
+					</Link>
+					<div className="ml1">|</div>
+					<Link to="/top" className="ml1 no-underline white">
+						Top
+					</Link>
+					<div className="ml1">|</div>
+					<Link to="/search" className="ml1 no-underline white">
+						Search
 					</Link>
 					{authToken && (
 						<div className="flex">

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AUTH_TOKEN} from '../Constants';
+import {AUTH_TOKEN, CURRENT_USER} from '../Constants';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -7,14 +7,22 @@ import gql from 'graphql-tag';
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!){
     signup(email: $email, password: $password, name: $name) {
-      token
+			token
+			user {
+				id,
+				name
+			}
     }
   }`
 //Login mutation - used when state.login = true
 const LOGIN_MUTATION = gql`
   mutation LoginMutation($email: String!, $password: String!){
     login(email: $email, password: $password) {
-      token
+			token
+			user {
+				id,
+				name
+			}
     }
   }`
 
@@ -42,7 +50,7 @@ class Login extends Component {
 							value={name}
 							onChange={(event) => this.setState({ name: event.target.value })}
 							type="text"
-							placeholder="Full Name"
+							placeholder="Username"
 						/>
 					)}
 					<input
@@ -86,16 +94,18 @@ class Login extends Component {
 	//confirm async method - passed data returned by mutation
 	_confirm = async (data) => {
     //save token returned from mutation - login/signup depending on which mutation triggered
-    const { token } = this.state.login ? data.login : data.signup
-    this._saveUserData(token)
+    const { token, user } = this.state.login ? data.login : data.signup
+		this._saveUserData(token, user.name)
     //return to main screen/links feed
-    this.props.history.push(`/`)
+    this.props.history.push(`/new/1`)
   };
 
 	//save user data method - using local storage for now
-	_saveUserData = (token) => {
+	_saveUserData = (token, userName) => {
     //save auth token in local storage (temporary approach)
 		localStorage.setItem(AUTH_TOKEN, token);
+		//save current user gql data in local storage
+		localStorage.setItem(CURRENT_USER, userName)
 	};
 }
 

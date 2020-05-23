@@ -16,16 +16,28 @@ input {
   max-width: 500px;
 }
 
+.sand {
+  color: #a7954e;
+}
+
 .gray {
-  color: #828282;
+  color: rgb(87, 86, 86);
 }
 
 .olive-green {
+  color: #556B2F;
+}
+
+.background-olive-green {
   background-color: #556B2F;
 }
 
 .background-gray {
   background-color: rgb(110, 107, 107);
+}
+
+.background-lightgray {
+  background-color: rgb(141, 137, 137);
 }
 
 .f11 {
@@ -34,6 +46,10 @@ input {
 
 .w85 {
   width: 85%;
+}
+
+.vote {
+  cursor: pointer;
 }
 
 .button {
